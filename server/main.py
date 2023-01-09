@@ -11,7 +11,7 @@ app = Flask(__name__)
 @app.route('/server/drinks')
 def drink():
     
-    api_url = f'https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic'
+    api_url = f'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list'
     response = requests.get(api_url)
     data = response.json()
     
