@@ -6,10 +6,10 @@ import Selector2 from "./selector2";
 function App() {
   return (
     <div className="flex items-center justify-center p-2 h-full w-full bg-slate-400 overflow-x-scroll">
-      <Selector1 className="flex items-center w-10 h-full" />
+      <div><Selector1 className="absolute items-center w-10 h-full" /></div>
 
       <div className="w-6 bg-white"></div>
-      <Selector2 className="flex items-center w-10 h-full" />
+      <div><Selector2 className="absolute items-center w-10 h-full" /></div>
     </div>
   );
 }

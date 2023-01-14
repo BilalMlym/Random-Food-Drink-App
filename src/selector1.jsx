@@ -1,14 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { BiChevronDown } from "react-icons/bi";
-import { AiOutlineSearch } from "react-icons/ai";
+import axios from 'axios'
+
+
+
+
+
+
+
+
+
 
 const Selector1 = () => {
-//   const [countries, setCountries] = useState(null);
-const [drink, setDrink] = useState([]);
+ 
+  const [drink, setDrink] = useState([]);
   const [meal, setMeal] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [selected, setSelected] = useState("");
   const [open, setOpen] = useState(false);
+  const [randomDrinks, setRandomDrinks] = useState([]);
+  
+  
+
 
   useEffect(() => {
     fetch("/server/drinks")
@@ -16,9 +28,7 @@ const [drink, setDrink] = useState([]);
       .then((responce) => setDrink(responce.drinks))
       .catch((error) => console.log({ error }));
   }, []);
- console.log(drink)
-
-
+  console.log(drink);
 
   useEffect(() => {
     fetch("/server/meals")
@@ -26,15 +36,32 @@ const [drink, setDrink] = useState([]);
       .then((responce) => setMeal(responce.categories))
       .catch((error) => console.log({ error }));
   }, []);
-  
-console.log(meal)
- 
- 
-  return (
 
-    
+  console.log(meal);
+
+  
+
+
+
+
+function handleClick(){
+  axios.post('/server/DrinkPosts', {
+    selected 
+  })
+  .then(function (response) {
+    return response.data
+  })
+  .then(data => setRandomDrinks(data.drinks))
+  .catch(function (error) {
+    console.log(error);
+  });
+  
+}
+
+
+  return (
     <div className="w-72 font-medium h-full">
-      <h3 className="text-white p-6" > Drinks Category</h3>
+      <h3 className="text-white p-6"> Drinks Category</h3>
       <div
         onClick={() => setOpen(!open)}
         className={`bg-white w-full p-2 flex items-center justify-between rounded ${
@@ -46,31 +73,30 @@ console.log(meal)
             ? selected?.substring(0, 25) + "..."
             : selected
           : "Select Drink"}
-        <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
       </div>
       <ul
         className={`bg-white mt-2 overflow-y-auto ${
           open ? "max-h-60" : "max-h-0"
         } `}
       >
-        
         {drink?.map((drink) => (
           <li
             key={drink?.strCategory}
             className={`p-2 text-sm hover:bg-sky-600 hover:text-white
             ${
-                drink?.strCategory?.toLowerCase() === selected?.toLowerCase() &&
-                "bg-sky-600 text-white"
-              }
+              drink?.strCategory?.toLowerCase() === selected?.toLowerCase() &&
+              "bg-sky-600 text-white"
+            }
             }
             ${
               drink?.strCategory?.toLowerCase().startsWith(inputValue)
                 ? "block"
                 : "hidden"
             }`}
-            
             onClick={() => {
-              if (drink?.strCategory?.toLowerCase() !== selected.toLowerCase()) {
+              if (
+                drink?.strCategory?.toLowerCase() !== selected.toLowerCase()
+              ) {
                 setSelected(drink?.strCategory);
                 setOpen(false);
                 setInputValue("");
@@ -81,6 +107,21 @@ console.log(meal)
           </li>
         ))}
       </ul>
+      <div onClick={handleClick} style={{
+      textAlign: 'center',
+      width: '100px',
+      border: '1px solid gray',
+      borderRadius: '5px'
+    }}>
+      Send data to backend
+      <div>
+        {randomDrinks.map(drink => 
+          <div>{drink.strDrink} </div>
+          )}
+      </div>
+    </div>
+      
+      
     </div>
   );
 };
