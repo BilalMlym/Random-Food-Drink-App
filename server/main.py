@@ -39,28 +39,24 @@ def meals():
 
 
 
-
-
-
 @app.route("/server/DrinkPosts", methods=["POST", "GET"])
 def posts():
     data = request.get_json()
     print(data)
     
     category = data['selected']
+    print(category)
     api_url = f'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c={category}'
     response = requests.get(api_url)
     data2 = response.json()
-    //
-    print (data2['drinks'][0]['strDrink'])
-    //
-    # print(random.choice(data2['drinks']["strDrink"]))    
-    # t = data2['strDrink']
-    # print(t)
     
-  
-    # print(data2)
-    return jsonify(data2)
+    totalDrinks = len(data2['drinks'])
+    print(totalDrinks)
+    randomNum = random.randint(0, int(totalDrinks))
+    givenDrink = data2['drinks'][randomNum]
+    print(givenDrink)
+    
+    return jsonify(givenDrink)
 
   
 

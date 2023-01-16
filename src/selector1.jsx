@@ -1,26 +1,13 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios'
-
-
-
-
-
-
-
-
-
+import axios from "axios";
 
 const Selector1 = () => {
- 
   const [drink, setDrink] = useState([]);
   const [meal, setMeal] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [selected, setSelected] = useState("");
   const [open, setOpen] = useState(false);
-  const [randomDrinks, setRandomDrinks] = useState([]);
-  
-  
-
+  const [randomDrink, setRandomDrink] = useState([]);
 
   useEffect(() => {
     fetch("/server/drinks")
@@ -39,32 +26,29 @@ const Selector1 = () => {
 
   console.log(meal);
 
-  
+  function handleClick() {
+    axios
+      .post("/server/DrinkPosts", {
+        selected,
+      })
+      .then(function (response) {
+        return response.data;
+      })
+      .then((data) => setRandomDrink(data))
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  console.log(drink)
 
-
-
-
-function handleClick(){
-  axios.post('/server/DrinkPosts', {
-    selected 
-  })
-  .then(function (response) {
-    return response.data
-  })
-  .then(data => setRandomDrinks(data.drinks))
-  .catch(function (error) {
-    console.log(error);
-  });
-  
-}
-
+  console.log(selected);
 
   return (
     <div className="w-72 font-medium h-full">
       <h3 className="text-white p-6"> Drinks Category</h3>
       <div
         onClick={() => setOpen(!open)}
-        className={`bg-white w-full p-2 flex items-center justify-between rounded ${
+        className={`bg-white w-full p-5 flex items-center justify-between rounded ${
           !selected && "text-gray-700"
         }`}
       >
@@ -107,20 +91,24 @@ function handleClick(){
           </li>
         ))}
       </ul>
-      <div onClick={handleClick} style={{
-      textAlign: 'center',
-      width: '100px',
-      border: '1px solid gray',
-      borderRadius: '5px'
-    }}>
-      Send data to backend
-      <div>
-        {randomDrinks.map(drink => 
-          <div>{drink.strDrink} </div>
-          )}
+      <div
+        onClick={handleClick}
+        style={{
+          textAlign: "center",
+          width: "250px",
+          border: "1px solid gray",
+          borderRadius: "5px",
+        }}
+      className = "p-3" >
+        <button className="rounded-sm">Give me a random {selected}</button> 
       </div>
-    </div>
+      <div className="p-1"></div>
+      <div className="bg-gray-300 text-lg rounded-lg p-6 min-w-[44px] object-cover shadow-lg shadow-black-200" key={randomDrink.strDrink}>
+        {randomDrink.strDrink}
+        <img className="rounded-lg" src={randomDrink.strDrinkThumb} alt="pict" />
+      </div>
       
+       
       
     </div>
   );
