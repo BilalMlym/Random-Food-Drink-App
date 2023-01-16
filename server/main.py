@@ -13,7 +13,7 @@ def login():
   return jsonify({'success': 'ok'})
 
 if __name__ == "__main__":
-  app.run(host='0.0.0.0', port=8000, debug=True)
+  app.run(host='0.0.0.0', port=5000, debug=True)
 
 
 @app.route('/server/drinks')
@@ -31,7 +31,7 @@ def drink():
 def meals():
     
     
-    api_url = f'https://www.themealdb.com/api/json/v1/1/categories.php'
+    api_url = f'https://www.themealdb.com/api/json/v1/1/list.php?c=list'
     response = requests.get(api_url)
     data2 = response.json()
     
@@ -57,6 +57,23 @@ def posts():
     print(givenDrink)
     
     return jsonify(givenDrink)
+
+  
+@app.route("/server/MealPosts", methods=["POST", "GET"])
+def mealPosts():
+    data = request.get_json()
+    category = data['selected']
+  
+    
+    api_url1 = f'https://www.themealdb.com/api/json/v1/1/filter.php?c={category}'
+    response = requests.get(api_url1)
+    data2 = response.json()
+
+    totalMeals = len(data2['meals'])
+    randomNum1 = random.randint(0, int(totalMeals))
+    givenMeal = data2['meals'][randomNum1]
+    
+    return jsonify(givenMeal)
 
   
 

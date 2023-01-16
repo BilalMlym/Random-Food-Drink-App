@@ -3,7 +3,6 @@ import axios from "axios";
 
 const Selector1 = () => {
   const [drink, setDrink] = useState([]);
-  const [meal, setMeal] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [selected, setSelected] = useState("");
   const [open, setOpen] = useState(false);
@@ -15,16 +14,6 @@ const Selector1 = () => {
       .then((responce) => setDrink(responce.drinks))
       .catch((error) => console.log({ error }));
   }, []);
-  console.log(drink);
-
-  useEffect(() => {
-    fetch("/server/meals")
-      .then((responce) => responce.json())
-      .then((responce) => setMeal(responce.categories))
-      .catch((error) => console.log({ error }));
-  }, []);
-
-  console.log(meal);
 
   function handleClick() {
     axios
@@ -36,12 +25,9 @@ const Selector1 = () => {
       })
       .then((data) => setRandomDrink(data))
       .catch(function (error) {
-        console.log(error);
+        console.log("error");
       });
   }
-  console.log(drink)
-
-  console.log(selected);
 
   return (
     <div className="w-72 font-medium h-full">
@@ -78,9 +64,7 @@ const Selector1 = () => {
                 : "hidden"
             }`}
             onClick={() => {
-              if (
-                drink?.strCategory?.toLowerCase() !== selected.toLowerCase()
-              ) {
+              if (drink?.strCategory?.toLowerCase() !== selected.toLowerCase()) {
                 setSelected(drink?.strCategory);
                 setOpen(false);
                 setInputValue("");
@@ -99,17 +83,22 @@ const Selector1 = () => {
           border: "1px solid gray",
           borderRadius: "5px",
         }}
-      className = "p-3" >
-        <button className="rounded-sm">Give me a random {selected}</button> 
+        className="p-3"
+      >
+        <button className="rounded-sm">Give me a random {selected}</button>
       </div>
       <div className="p-1"></div>
-      <div className="bg-gray-300 text-lg rounded-lg p-6 min-w-[44px] object-cover shadow-lg shadow-black-200" key={randomDrink.strDrink}>
+      <div
+        className="bg-gray-300 text-lg rounded-lg p-6 min-w-[44px] object-cover shadow-lg shadow-black-200"
+        key={randomDrink.strDrink}
+      >
         {randomDrink.strDrink}
-        <img className="rounded-lg" src={randomDrink.strDrinkThumb} alt="pict" />
+        <img
+          className="rounded-lg"
+          src={randomDrink.strDrinkThumb}
+          alt="pict"
+        />
       </div>
-      
-       
-      
     </div>
   );
 };
