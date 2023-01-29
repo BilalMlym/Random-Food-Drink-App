@@ -19,45 +19,41 @@ if __name__ == "__main__":
 
 @app.route('/get_drink_categories')
 def get_drink_categories():
-    api_url = f'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list'
-    response = requests.get(api_url)
-    data1 = response.json()
-    return data1
+    url = f'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list'
+    response = requests.get(url)
+    return response.json()
 
 
 @app.route('/get_meal_categories')
 def get_meal_categories():
-    api_url = f'https://www.themealdb.com/api/json/v1/1/list.php?c=list'
-    response = requests.get(api_url)
-    data2 = response.json()
-    return data2
+    url = f'https://www.themealdb.com/api/json/v1/1/list.php?c=list'
+    response = requests.get(url)
+    return response.json()
 
 
 @app.route("/get_random_drink", methods=["POST", "GET"])
 def get_random_drink():
-    data = request.get_json()
-    category = data['selected']
-    api_url = (
+    content = request.get_json()
+    category = content['selected']
+    url = (
         f'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c={category}'
     )
-    response = requests.get(api_url)
-    data2 = response.json()
-    totalDrinks = len(data2['drinks'])
-    randomNum = random.randint(0, int(totalDrinks))
-    givenDrink = data2['drinks'][randomNum]
-    return jsonify(givenDrink)
+    response = requests.get(url)
+    data = response.json()
+    all_drinks = len(data['drinks'])
+    random_num = random.randint(0, int(all_drinks))
+    drink = data['drinks'][random_num]
+    return jsonify(drink)
 
 
 @app.route("/get_random_meal", methods=["POST", "GET"])
 def get_random_meal():
-    data = request.get_json()
-    category = data['selected']
-    api_url1 = (
-        f'https://www.themealdb.com/api/json/v1/1/filter.php?c={category}'
-    )
-    response = requests.get(api_url1)
-    data2 = response.json()
-    totalMeals = len(data2['meals'])
-    randomNum1 = random.randint(0, int(totalMeals))
-    givenMeal = data2['meals'][randomNum1]
-    return jsonify(givenMeal)
+    content = request.get_json()
+    category = content['selected']
+    url = f'https://www.themealdb.com/api/json/v1/1/filter.php?c={category}'
+    response = requests.get(url)
+    data = response.json()
+    all_meals = len(data['meals'])
+    random_num = random.randint(0, int(all_meals))
+    meal = data['meals'][random_num]
+    return jsonify(meal)
