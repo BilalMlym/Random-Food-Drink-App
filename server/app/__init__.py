@@ -3,10 +3,12 @@ from flask_cors import CORS
 from flask_talisman import Talisman
 from .blueprints.drinks.routes import drinks
 from .blueprints.meals.routes import meals
+from .clients.drink import DrinkClient
 
 
 def create_app():
     app = Flask(__name__)
+    app.drink_client = DrinkClient()
     with app.app_context():
         # register blueprints
         app.register_blueprint(drinks)
