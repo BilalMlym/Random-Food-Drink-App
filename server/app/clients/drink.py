@@ -4,15 +4,15 @@ import requests
 
 class Drink:
     def __init__(self):
-        url = 'https://www.thecocktaildb.com/api/json/v1/1/'
+        self.url = 'https://www.thecocktaildb.com/api/json/v1/1'
+
+    @staticmethod
+    def make_request(url):
+        response = requests.get(url)
+        return response.json()
 
     def get_categories(self):
-        #     url = (
-        #     f'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list'  # noqa
-        # )
-        # response = requests.get(url)
-        # return response.json()
-        pass
+        return self.make_request(f'{self.url}/list.php?c=list')
 
     def get_random_drink(self):
         #     content = request.get_json()
