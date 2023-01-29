@@ -2,7 +2,7 @@ import random
 import requests
 
 
-class Drink:
+class DrinkClient:
     def __init__(self):
         self.url = 'https://www.thecocktaildb.com/api/json/v1/1'
 
