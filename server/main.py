@@ -17,24 +17,24 @@ if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
 
 
-@app.route('/server/drinks')
-def drink():
+@app.route('/get_drink_categories')
+def get_drink_categories():
     api_url = f'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list'
     response = requests.get(api_url)
     data1 = response.json()
     return data1
 
 
-@app.route('/server/meals')
-def meals():
+@app.route('/get_meal_categories')
+def get_meal_categories():
     api_url = f'https://www.themealdb.com/api/json/v1/1/list.php?c=list'
     response = requests.get(api_url)
     data2 = response.json()
     return data2
 
 
-@app.route("/server/DrinkPosts", methods=["POST", "GET"])
-def posts():
+@app.route("/get_random_drink", methods=["POST", "GET"])
+def get_random_drink():
     data = request.get_json()
     category = data['selected']
     api_url = (
@@ -48,8 +48,8 @@ def posts():
     return jsonify(givenDrink)
 
 
-@app.route("/server/MealPosts", methods=["POST", "GET"])
-def mealPosts():
+@app.route("/get_random_meal", methods=["POST", "GET"])
+def get_random_meal():
     data = request.get_json()
     category = data['selected']
     api_url1 = (
