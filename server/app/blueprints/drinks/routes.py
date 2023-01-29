@@ -9,7 +9,7 @@ def get_drink_categories():
     return jsonify(categories)
 
 
-@drinks.route("/get_random", methods=["POST", "GET"])
+@drinks.route("/get_random", methods=["POST"])
 def get_random_drink():
     content = request.get_json()
     category = content['selected']
