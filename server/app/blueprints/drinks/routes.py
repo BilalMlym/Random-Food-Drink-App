@@ -1,29 +1,17 @@
-import random
-import requests
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, current_app
 
 drinks = Blueprint('drinks', __name__, url_prefix='/drinks')
 
 
 @drinks.route('/get_categories', methods=["GET"])
 def get_drink_categories():
-    url = (
-        f'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list'  # noqa
-    )
-    response = requests.get(url)
-    return response.json()
+    categories = current_app.drink_client.get_categories()
+    return jsonify(categories)
 
 
-@drinks.route("/get_random", methods=["POST", "GET"])
+@drinks.route("/get_random", methods=["POST"])
 def get_random_drink():
     content = request.get_json()
     category = content['selected']
-    url = (
-        f'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c={category}'
-    )
-    response = requests.get(url)
-    data = response.json()
-    all_drinks = len(data['drinks'])
-    random_num = random.randint(0, int(all_drinks))
-    drink = data['drinks'][random_num]
+    drink = current_app.drink_client.get_random_drink(category)
     return jsonify(drink)
