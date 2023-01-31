@@ -9,7 +9,7 @@ const Selector1 = () => {
   const [randomDrink, setRandomDrink] = useState([]);
 
   useEffect(() => {
-    fetch("/server/drinks")
+    fetch("/get_drink_categories")
       .then((responce) => responce.json())
       .then((responce) => setDrink(responce.drinks))
       .catch((error) => console.log({ error }));
@@ -17,7 +17,7 @@ const Selector1 = () => {
 
   function handleClick() {
     axios
-      .post("/server/DrinkPosts", {
+      .post("/get_random_drink", {
         selected,
       })
       .then(function (response) {
@@ -64,7 +64,9 @@ const Selector1 = () => {
                 : "hidden"
             }`}
             onClick={() => {
-              if (drink?.strCategory?.toLowerCase() !== selected.toLowerCase()) {
+              if (
+                drink?.strCategory?.toLowerCase() !== selected.toLowerCase()
+              ) {
                 setSelected(drink?.strCategory);
                 setOpen(false);
                 setInputValue("");
