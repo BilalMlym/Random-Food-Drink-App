@@ -9,7 +9,7 @@ const Selector2 = () => {
   const [randomMeal, setRandomMeal] = useState([]);
 
   useEffect(() => {
-    fetch("/get_meal_categories")
+    fetch("/meals/get_categories")
       .then((responce) => responce.json())
       .then((responce) => setMeal(responce.meals))
       .catch((error) => console.log({ error }));
@@ -17,7 +17,7 @@ const Selector2 = () => {
 
   function handleClick() {
     axios
-      .post("/get_random_meal", {
+      .post("/meals/get_random", {
         selected,
       })
       .then(function (response) {
