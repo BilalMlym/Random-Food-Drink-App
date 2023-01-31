@@ -9,7 +9,7 @@ const Selector1 = () => {
   const [randomDrink, setRandomDrink] = useState([]);
 
   useEffect(() => {
-    fetch("/get_drink_categories")
+    fetch("/drinks/get_categories")
       .then((responce) => responce.json())
       .then((responce) => setDrink(responce.drinks))
       .catch((error) => console.log({ error }));
