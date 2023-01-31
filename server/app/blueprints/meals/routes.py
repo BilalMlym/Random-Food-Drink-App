@@ -4,6 +4,8 @@ from flask import Blueprint, jsonify, request
 
 meals = Blueprint('meals', __name__, url_prefix='/meals')
 
+# test
+
 
 @meals.route('/get_categories', methods=["GET"])
 def get_meal_categories():
