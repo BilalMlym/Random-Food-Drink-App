@@ -2,7 +2,7 @@ import random
 import requests
 
 
-class DrinkClient:
+class MealClient:
     def __init__(self):
         self.url = 'https://www.themealdb.com/api/json/v1/1'
 
@@ -14,7 +14,7 @@ class DrinkClient:
     def get_categories(self):
         return self.make_request(f'{self.url}/list.php?c=list')
 
-    def get_random_drink(self, category):
+    def get_random_meal(self, category):
         data = self.make_request(f'{self.url}/filter.php?c={category}')
         random_num = random.randint(0, len(data['meals']))
         return data['meals'][random_num]

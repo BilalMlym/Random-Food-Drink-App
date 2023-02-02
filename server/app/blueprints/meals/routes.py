@@ -1,27 +1,17 @@
-import random
-import requests
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, current_app
 
 meals = Blueprint('meals', __name__, url_prefix='/meals')
-
-# test
 
 
 @meals.route('/get_categories', methods=["GET"])
 def get_meal_categories():
-    url = f'https://www.themealdb.com/api/json/v1/1/list.php?c=list'  # noqa
-    response = requests.get(url)
-    return response.json()
+    categories = current_app.meal_client.get_categories()
+    return jsonify(categories)
 
 
-@meals.route("/get_random", methods=["POST", "GET"])
+@meals.route("/get_random", methods=["POST"])
 def get_random_meal():
     content = request.get_json()
     category = content['selected']
-    url = f'https://www.themealdb.com/api/json/v1/1/filter.php?c={category}'
-    response = requests.get(url)
-    data = response.json()
-    all_meals = len(data['meals'])
-    random_num = random.randint(0, int(all_meals))
-    meal = data['meals'][random_num]
+    meal = current_app.meal_client.get_random_meal(category)
     return jsonify(meal)
