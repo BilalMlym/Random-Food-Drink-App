@@ -17,7 +17,7 @@ const Selector1 = () => {
 
   function handleClick() {
     axios
-      .post("/get_random_drink", {
+      .post("/drinks/get_random", {
         selected,
       })
       .then(function (response) {
