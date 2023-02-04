@@ -1,15 +1,10 @@
 import random
-import requests
+from ..clients.request_client import request_client
 
 
-class MealClient:
+class MealClient(request_client):
     def __init__(self):
         self.url = 'https://www.themealdb.com/api/json/v1/1'
-
-    @staticmethod
-    def make_request(url):
-        response = requests.get(url)
-        return response.json()
 
     def get_categories(self):
         return self.make_request(f'{self.url}/list.php?c=list')

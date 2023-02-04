@@ -7,8 +7,13 @@ from .clients.drink import DrinkClient
 from .clients.meal import MealClient
 
 
+
+
+
+
 def create_app():
     app = Flask(__name__)
+ 
     app.drink_client = DrinkClient()
     app.meal_client = MealClient()
     with app.app_context():
