@@ -1,7 +1,7 @@
 import requests
 
 
-class request_client:
+class RequestClient:
     @staticmethod    
     def make_request(url):
         response = requests.get(url)

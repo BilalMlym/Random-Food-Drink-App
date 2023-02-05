@@ -1,8 +1,8 @@
 import random
-from ..clients.request_client import request_client
+from ..clients.RequestClient import RequestClient
 
 
-class MealClient(request_client):
+class MealClient(RequestClient):
     def __init__(self):
         self.url = 'https://www.themealdb.com/api/json/v1/1'
 

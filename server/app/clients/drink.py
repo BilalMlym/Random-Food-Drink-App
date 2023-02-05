@@ -1,7 +1,8 @@
 import random
-from ..clients.request_client import request_client
+from ..clients.RequestClient import RequestClient
 
-class DrinkClient(request_client):
+
+class DrinkClient(RequestClient):
     def __init__(self):
         self.url = 'https://www.thecocktaildb.com/api/json/v1/1'
 
