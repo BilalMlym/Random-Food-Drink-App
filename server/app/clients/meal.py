@@ -1,5 +1,5 @@
 import random
-from ..clients.RequestClient import RequestClient
+from ..clients.request_client import RequestClient
 
 
 class MealClient(RequestClient):
