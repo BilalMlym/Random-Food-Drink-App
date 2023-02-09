@@ -1,15 +1,10 @@
 import random
-import requests
+from ..clients.request_client import RequestClient
 
 
-class DrinkClient:
+class DrinkClient(RequestClient):
     def __init__(self):
         self.url = 'https://www.thecocktaildb.com/api/json/v1/1'
-
-    @staticmethod
-    def make_request(url):
-        response = requests.get(url)
-        return response.json()
 
     def get_categories(self):
         return self.make_request(f'{self.url}/list.php?c=list')
