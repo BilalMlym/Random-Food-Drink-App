@@ -6,8 +6,6 @@ class DrinkClient(RequestClient):
     def __init__(self):
         self.url = 'https://www.thecocktaildb.com/api/json/v1/1'
 
-
-
     def get_categories(self):
         return self.make_request(f'{self.url}/list.php?c=list')
 
