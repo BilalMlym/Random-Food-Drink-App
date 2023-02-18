@@ -1,5 +1,5 @@
 import random
-from ..clients.request_client import RequestClient
+from .request import RequestClient
 
 
 class DrinkClient(RequestClient):
