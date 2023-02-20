@@ -20,4 +20,7 @@ class RequestClientTest(unittest.TestCase):
             }
         )
         res = self.request_client.make_request('http://dummy_url.com')
+        print(res)
         self.assertEqual({'success': True}, res)
+
+
