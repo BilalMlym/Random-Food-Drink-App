@@ -15,11 +15,11 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: Cache python env
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-${{ matrix.group }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('test_requirements.txt') }}
+      # - name: Cache python env
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: ${{ env.pythonLocation }}
+      #     key: ${{ env.pythonLocation }}-${{ matrix.group }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('test_requirements.txt') }}
 
       # Install dependencies
       - name: Install dependencies
