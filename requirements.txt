@@ -1,3 +1,4 @@
 Flask==2.2.2
 flask-talisman==1.0.0
 Flask-Cors==1.10.3
+requests==2.28.2
