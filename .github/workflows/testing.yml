@@ -1,0 +1,36 @@
+name: Python
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        group: [1, 2, 3, 4, 5]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Set up Python 3.9 environment
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+
+      - name: Cache python env
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ env.pythonLocation }}-${{ matrix.group }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('test_requirements.txt') }}
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          eval `ssh-agent -s`
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r test_requirements.txt
+
+      - name: Run unit tests
+        run: pytest --splits 5 --group ${{ matrix.group }} -n auto
+
+      
