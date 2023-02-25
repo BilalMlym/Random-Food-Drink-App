@@ -25,7 +25,7 @@ const MealCategory = ({ category, setCategory }) => {
   if (!categories) {
     return null;
   }
-  console.log(categories);
+
   return (
     <div className="meal-category">
       <h3 className="text-white p-6"> Meals Category</h3>

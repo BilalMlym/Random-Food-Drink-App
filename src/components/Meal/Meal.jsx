@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import MealCategory from './MealCategory/MealCategory';
+import RandomMeal from './RandomMeal/RandomMeal';
 
 const Meal = () => {
   const [mealCategory, setMealCategory] = useState(null);
@@ -9,6 +10,7 @@ const Meal = () => {
   return (
     <div>
       <MealCategory category={mealCategory} setCategory={setMealCategory} />
+      <RandomMeal category={mealCategory} />
     </div>
   );
 };
