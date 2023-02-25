@@ -15,7 +15,7 @@ class MealClientTest(unittest.TestCase):
         self.assertEqual(res, 'dummy_response')
 
     def test_get_random_drink(self):
-        data = {'meals': ['dummy_meal_0', 'dummy_meal_1','dummy_meal_2']}
+        data = {'meals': ['dummy_meal_0', 'dummy_meal_1', 'dummy_meal_2']}
         request_mock = MagicMock(return_value=data)
         self.meal_client.make_request = request_mock
 

@@ -1,0 +1,142 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["airbnb", "airbnb/hooks", "plugin:prettier/recommended"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["prettier"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".d.ts", ".ts", ".tsx"]
+      }
+    }
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      { "singleQuote": true, "endOfLine": "auto" }
+    ],
+
+    "react/function-component-definition": "off",
+    "react/destructuring-assignment": "off",
+    "react/require-default-props": "off",
+
+    "no-console": "warn",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^err|^_" }],
+
+    "react/jsx-no-constructed-context-values": "warn",
+    "react/jsx-no-bind": "warn",
+    "react/no-unused-prop-types": "warn",
+    "react/forbid-prop-types": "warn",
+    "react/no-array-index-key": "warn",
+    "react/jsx-props-no-spreading": "warn",
+
+    "jsx-a11y/click-events-have-key-events": "warn",
+    "jsx-a11y/no-static-element-interactions": "warn",
+    "jsx-a11y/no-noninteractive-element-interactions": "warn",
+    "jsx-a11y/anchor-has-content": "warn",
+    "jsx-a11y/control-has-associated-label": "warn",
+    "no-void": ["error", { "allowAsStatement": true }],
+    "import/extensions": "off"
+  },
+
+  "overrides": [
+    {
+      "files": ["**/*.{ts,tsx}"],
+      "plugins": ["@typescript-eslint"],
+      "extends": [
+        "airbnb-typescript",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:prettier/recommended"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+      },
+
+      "rules": {
+        "react/jsx-filename-extension": [0],
+        "import/extensions": "off",
+        "semi": ["error", "always"],
+        "react/jsx-props-no-spreading": "off",
+        "indent": 0,
+        "prefer-promise-reject-errors": ["error", { "allowEmptyReject": true }],
+        "space-before-function-paren": [
+          "error",
+          { "anonymous": "always", "named": "never", "asyncArrow": "always" }
+        ],
+        "import/prefer-default-export": "off",
+        "react/require-default-props": [
+          "error",
+          { "ignoreFunctionalComponents": true }
+        ],
+        "react/button-has-type": "off",
+        "comma-dangle": [
+          2,
+          {
+            "arrays": "always-multiline",
+            "objects": "always-multiline",
+            "imports": "always-multiline",
+            "exports": "always-multiline",
+            "functions": "ignore"
+          }
+        ],
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            "devDependencies": ["**/*.stories.*", "**/.storybook/**/*.*"],
+            "peerDependencies": true
+          }
+        ],
+        "jsx-a11y/label-has-associated-control": [
+          "error",
+          {
+            "required": {
+              "some": ["nesting", "id"]
+            }
+          }
+        ],
+        "jsx-a11y/label-has-for": [
+          "error",
+          {
+            "required": {
+              "some": ["nesting", "id"]
+            }
+          }
+        ],
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+        "no-param-reassign": ["error", { "props": false }],
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": ["error"],
+        "@typescript-eslint/restrict-template-expressions": ["off"],
+        "max-len": ["warn", { "code": 120 }],
+        "@typescript-eslint/no-unsafe-assignment": 0,
+        "@typescript-eslint/no-unsafe-call": 0,
+        "@typescript-eslint/no-unsafe-argument": 0,
+        "@typescript-eslint/no-unsafe-member-access": 0,
+        "no-void": ["error", { "allowAsStatement": true }],
+        "@typescript-eslint/no-floating-promises": 0,
+        "@typescript-eslint/no-unsafe-return": 0,
+        "@typescript-eslint/no-misused-promises": 0,
+        "@typescript-eslint/naming-convention": 0,
+        "no-nested-ternary": "off",
+        "react/prop-types": 0
+      }
+    }
+  ]
+}
