@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import './RandomMeal.scss';
 import PropTypes from 'prop-types';
+import Loading from '../../Loading/Loading';
 
 const RandomMeal = ({ category }) => {
   const [meal, setMeal] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const getRandomMeal = () => {
-    fetch('/meals/get_random', {
+  const getRandomMeal = async () => {
+    setLoading(true);
+    const data = await fetch('/meals/get_random', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -14,11 +17,21 @@ const RandomMeal = ({ category }) => {
       body: JSON.stringify({ selected: category }),
     })
       .then((response) => response.json())
-      .then((data) => setMeal(data))
       .catch((error) => console.log({ error }));
+
+    setMeal(data);
+    setLoading(false);
   };
   if (!category) {
     return null;
+  }
+
+  if (loading) {
+    return (
+      <div className="random-meal">
+        <Loading />
+      </div>
+    );
   }
 
   if (!meal) {
