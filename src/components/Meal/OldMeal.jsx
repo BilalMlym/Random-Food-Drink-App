@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Selector2 = () => {
+const Meal = () => {
   const [meal, setMeal] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [selected, setSelected] = useState('');
@@ -107,4 +107,4 @@ const Selector2 = () => {
   );
 };
 
-export default Selector2;
+export default Meal;
