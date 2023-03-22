@@ -1,0 +1,45 @@
+.random-drink {
+  background-color: #f8f8f8;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 90%;
+  min-width: 400px;
+  min-height: 600px;
+  margin: 10px 0 auto auto;
+  padding: 5px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.random-drink .random-button-text {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #a1a6b4;
+}
+
+.random-drink .drink {
+  margin: auto;
+  position: relative;
+}
+
+.random-drink .drink .img-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.random-drink .drink .click {
+  position: absolute;
+  bottom: 0;
+  background-color: #f8f8f8;
+  opacity: 0.5;
+}
+/*# sourceMappingURL=RandomDrink.css.map */
