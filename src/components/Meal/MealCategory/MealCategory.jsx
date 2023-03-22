@@ -29,7 +29,9 @@ const MealCategory = ({ category, setCategory }) => {
   return (
     <div className="meal-category">
       <h3 className="text-white p-6"> Meals Category</h3>
-      <div onClick={() => setShowCategories((v) => !v)}>{getName()}</div>
+      <button type="button" onClick={() => setShowCategories((v) => !v)}>
+        {getName()}
+      </button>
       <ul>
         {showCategories &&
           categories.map((c) => {

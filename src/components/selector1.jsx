@@ -40,14 +40,15 @@ const Selector1 = () => {
   return (
     <div className="w-72 font-medium h-full">
       <h3 className="text-white p-6"> Drinks Category</h3>
-      <div
+      <button
+        type="button"
         onClick={() => setOpen(!open)}
         className={`bg-white w-full p-5 flex items-center justify-between rounded ${
           !selected && 'text-gray-700'
         }`}
       >
         {getName()}
-      </div>
+      </button>
       <ul
         className={`bg-white mt-2 overflow-y-auto ${
           open ? 'max-h-60' : 'max-h-0'

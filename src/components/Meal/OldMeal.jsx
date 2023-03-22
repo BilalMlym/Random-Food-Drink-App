@@ -42,14 +42,15 @@ const Meal = () => {
   return (
     <div className="w-72 font-medium h-full">
       <h3 className="text-white p-6"> Meals Category</h3>
-      <div
+      <button
+        type="button"
         onClick={() => setOpen(!open)}
         className={`bg-white w-full p-5 flex items-center justify-between rounded ${
           !selected && 'text-gray-700'
         }`}
       >
         {getName()}
-      </div>
+      </button>
       <ul
         className={`bg-white mt-2 overflow-y-auto ${
           open ? 'max-h-60' : 'max-h-0'
@@ -81,7 +82,8 @@ const Meal = () => {
           </li>
         )}
       </ul>
-      <div
+      <button
+        type="button"
         onClick={handleClick}
         style={{
           textAlign: 'center',
@@ -94,7 +96,7 @@ const Meal = () => {
         <button className="rounded-sm" type="button">
           Give me a random {selected}
         </button>
-      </div>
+      </button>
       <div className="p-1" />
       <div
         className="bg-gray-300 text-lg rounded-lg p-6 min-w-[44px] object-cover shadow-lg shadow-black-200"

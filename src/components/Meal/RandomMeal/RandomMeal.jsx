@@ -19,8 +19,11 @@ const RandomMeal = ({ category }) => {
       .then((response) => response.json())
       .catch((error) => console.log({ error }));
 
-    setMeal(data);
-    setLoading(false);
+    setTimeout(() => {
+      setMeal(data);
+      // do something here 1 sec after current has changed
+      setLoading(false);
+    }, 3000);
   };
   if (!category) {
     return null;
