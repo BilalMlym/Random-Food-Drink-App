@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.scss';
 import Meal from '../components/Meal/Meal';
+import Drink from '../components/Drink/Drink';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
         <Meal />
       </div>
       <div>
-        {/* <Selector1 className="absolute items-center w-10 h-full" /> */}
+        <Drink />
       </div>
     </div>
   );
